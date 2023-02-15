@@ -128,6 +128,8 @@ export const SwapModalContent = ({
     blockingError = ErrorType.HF_BELOW_ONE;
   } else if (disableFlashLoan) {
     blockingError = ErrorType.FLASH_LOAN_NOT_AVAILABLE;
+  } else if (swapTarget.reserve.isFrozen) {
+    blockingError = ErrorType.TARGET_RESERVE_IS_FROZEN;
   }
 
   const handleBlocked = () => {
@@ -145,6 +147,13 @@ export const SwapModalContent = ({
           <Trans>
             Due to a precision bug in the stETH contract, this asset can not be used in flashloan
             transactions
+          </Trans>
+        );
+      case ErrorType.TARGET_RESERVE_IS_FROZEN:
+        return (
+          <Trans>
+            This asset cannot be used to swap to because it is frozen due to an Aave Protocol
+            Governance decision.
           </Trans>
         );
       default:

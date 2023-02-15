@@ -32,8 +32,7 @@ export const RepayModal = () => {
     userReserves.some(
       (userReserve) =>
         userReserve.scaledATokenBalance !== '0' &&
-        userReserve.underlyingAsset !== args.underlyingAsset &&
-        !args.isFrozen
+        userReserve.underlyingAsset !== args.underlyingAsset
     );
 
   return (
